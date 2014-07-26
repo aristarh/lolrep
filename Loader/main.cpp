@@ -8,14 +8,14 @@ using namespace std;
 
 int main()
 {
-    Film ololo("AL_E102_s00025");
-    /*Frame ololo("Segmentation/AL_E102_s00014_723");
-    for (int i = 0;i<ololo.countSegment();i++)
+    Film ololo("Segmentation","AL_E102_s00025");
+    Frame lol = ololo.getFrame(1) ;
+    for (int i = 0;i<lol.countSegment();i++)
     {
         namedWindow( "Contours", CV_WINDOW_AUTOSIZE );
-        imshow( "Contours", ololo.getSegment(i).getImage());
+        imshow( "Contours", lol.getSegment(i).getImage());
         waitKey(0);
-    }*/
+    }
     return 0;
 }
 

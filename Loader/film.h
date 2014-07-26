@@ -9,7 +9,7 @@
 class Film
 {
 public:
-    Film(char* mask);
+    Film(char* mainDirectory,char* mask);
     Frame getFrame(uint i);
     uint countFrames();
 private:

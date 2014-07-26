@@ -1,29 +1,34 @@
 #include "film.h"
 #include "iostream"
+#include "algorithm"
 
-const string mainDir = "Segmentation";
-
-Film::Film(char* mask)
+Film::Film(char* mainDirectory,char* mask)
 {
-    DIR *dir = opendir(mainDir.data());
+    DIR *dir = opendir(mainDirectory);
     if ( dir )
     {
         struct dirent *ent;
+        vector <string> directories;
         while ((ent = readdir(dir))!=NULL)
         {
-
             if (strstr(ent->d_name,mask)!=NULL)
             {
-                cout << ent->d_name << endl;
-                string tempStr=mainDir + '/';
+                string tempStr=mainDirectory;
+                tempStr+='/';
                 tempStr+=ent->d_name;
-                Frame temp(tempStr.data());
-                Film::frames.push_back(temp);
+                directories.push_back(tempStr);
             }
+        }
+        std::sort(directories.begin(),directories.end());
+        for ( int i = 0; i < directories.size(); i++)
+        {
+            Frame temp(directories[i].data());
+            Film::frames.push_back(temp);
         }
     }
     else
     {
+        cout<<"Directory not found"<<endl;
     }
 }
 
